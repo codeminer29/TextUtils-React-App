@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
+
   const handleUpClick = () => {
     // console.log("Uppercase was clicked" + text);
     let newText = text.toUpperCase();
@@ -11,30 +12,30 @@ export default function TextForm(props) {
     let newText = text.toLowerCase();
     setText(newText);
     props.showAlert("Converted to LowerCase", "success");
-};
-const handleClearClick = () => {
+  };
+  const handleClearClick = () => {
     let newText = "";
     setText(newText);
     props.showAlert("TextArea has been cleared", "success");
-};
-const handelCopy = () => {
+  };
+  const handelCopy = () => {
     var text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    document.getSelection().removeAllRanges();
     props.showAlert("Copied to clipboard!", "success");
-};
+  };
 
-const handleExtraSpaces = () => {
+  const handleExtraSpaces = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
     props.showAlert("Extra Space has been removed", "success");
-};
+  };
 
-const handleOnChange = (event) => {
+  const handleOnChange = (event) => {
     // console.log("On Change");
     setText(event.target.value);
   };
-
 
   const [text, setText] = useState("");
   return (
@@ -43,7 +44,7 @@ const handleOnChange = (event) => {
         className="container"
         style={{ color: props.mode === "dark" ? "white" : "#042743" }}
       >
-        <h1>{props.heading}</h1>
+        <h1 className="mb-4">{props.heading}</h1>
         <div className="mb-3">
           <textarea
             className="form-control"
@@ -52,24 +53,30 @@ const handleOnChange = (event) => {
             id="myBox"
             rows="8"
             style={{
-              backgroundColor: props.mode === "dark" ? "grey" : "white",
-              color: props.mode === "dark" ? "white" : "#042743",
+              backgroundColor: props.mode === "dark" ? "#13466e" : "white",
+              color: props.mode === "dark" ? "white" : "#042743"
             }}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-1" onClick={handleUpClick}>
+        <button disabled = {text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>
           Convert to Uppercase
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleLoClick}>
+        <button disabled = {text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleLoClick}>
           Convert to Lowercase
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleClearClick}>
+        <button disabled = {text.length===0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleClearClick}
+        >
           Clear Text
         </button>
-        <button className="btn btn-primary mx-1" onClick={handelCopy}>
+        <button disabled = {text.length===0} className="btn btn-primary mx-1 my-1" onClick={handelCopy}>
           Copy Text
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleExtraSpaces}>
+        <button disabled = {text.length===0}
+          className="btn btn-primary mx-1 my-1"
+          onClick={handleExtraSpaces}
+        >
           Remove Extra Spaces
         </button>
       </div>
@@ -80,14 +87,25 @@ const handleOnChange = (event) => {
       >
         <h1>Your text summary</h1>
         <p>
-          {text.split(" ").length} words and {text.length} characters
+          {
+            text.split(" ").filter((element) => {
+              return element != 0;
+            }).length
+          }{" "}
+          words and {text.length} characters
         </p>
-        <p>{0.008 * text.split(" ").length} Minutes read</p>
+        <p>It Takes{" "}
+          {0.008 *
+            text.split(" ").filter((element) => {
+              return element != 0;
+            }).length}{" "}
+          Minutes to Read the Text.
+        </p>
         <h2>Preview</h2>
         <p>
           {text.length > 0
             ? text
-            : "Enter something in the above textbox to preview it here."}
+            : "Nothing to Preview!"}
         </p>
       </div>
     </>
