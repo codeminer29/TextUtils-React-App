@@ -1,3 +1,7 @@
+# ScreenShots of react app
+<img src="LightMode.jpeg" width="128"/>
+<img src="DarkMode.jpeg" width="128"/>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
