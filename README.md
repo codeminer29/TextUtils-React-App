@@ -1,6 +1,12 @@
 # ScreenShots of react app
-<img src="LightMode.jpeg" width="128"/>
-<img src="DarkMode.jpeg" width="128"/>
+
+## LightMode
+
+<img src="public/LightMode.jpeg" />
+
+## DarkMode
+
+<img src="public/DarkMode.jpeg"/>
 
 # Getting Started with Create React App
 
