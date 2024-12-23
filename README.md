@@ -1,3 +1,8 @@
+
+# Getting Started with Create React App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 # ScreenShots of react app
 
 ## LightMode
@@ -7,10 +12,6 @@
 ## DarkMode
 
 <img src="public/DarkMode.jpeg"/>
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
